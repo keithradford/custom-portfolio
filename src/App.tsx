@@ -5,12 +5,10 @@ export function App(): JSX.Element | null {
   return (
     <Box
       bg="#353535"
-      bgImage={`url(${
-        process.env.PUBLIC_URL + "/assets/scaled_background.png"
-      })`}
-      bgRepeat="no-repeat"
       bgSize="cover"
-      bgPos="center center"
+      background={`url(${
+        process.env.PUBLIC_URL + "/assets/scaled_background.png"
+      }) no-repeat fixed`}
     >
       <Landing />
       <Box minH="100vh" id="content">
