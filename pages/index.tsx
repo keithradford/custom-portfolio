@@ -1,4 +1,5 @@
 import { Box, Container, Grid, GridItem, HStack } from "@chakra-ui/react";
+import Link from "next/link";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -15,7 +16,7 @@ export default function Home() {
           color="blackAlpha.700"
         >
           <GridItem pl="2" bg="pink.300" area={"nav"}>
-            Sidebar
+            <Link href="/post">link</Link>
           </GridItem>
           <GridItem pl="2" bg="green.300" area={"main"}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

@@ -4,11 +4,17 @@ import theme from "../constants/theme";
 import "@fontsource/inria-serif";
 
 function MyApp({ Component, pageProps }: any) {
+  const Layout = Component.layout || EmptyLayout;
+
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ChakraProvider>
   );
 }
+
+const EmptyLayout = ({ children }: any) => <>{children}</>;
 
 export default MyApp;
