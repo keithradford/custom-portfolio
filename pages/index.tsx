@@ -16,7 +16,7 @@ export default function Home() {
           color="blackAlpha.700"
         >
           <GridItem pl="2" bg="pink.300" area={"nav"}>
-            <Link href="/post">link</Link>
+            <Link href="/blog">link</Link>
           </GridItem>
           <GridItem pl="2" bg="green.300" area={"main"}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

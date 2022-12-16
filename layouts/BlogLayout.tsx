@@ -3,7 +3,7 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-export default function PostLayout({ children }: { children: JSX.Element }) {
+export default function BlogLayout({ children }: { children: JSX.Element }) {
   return (
     <Container maxW="container.lg">
       <Box w="100%" p={6}>
