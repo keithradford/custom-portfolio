@@ -1,11 +1,26 @@
 import matter from "gray-matter";
 import { marked } from "marked";
+import { highlight, languages } from "prismjs";
+import { Post } from "../constants/types";
 
-export async function getAllPosts(): Promise<
-  { slug: string; title: string }[]
-> {
+const loadLanguages = require("prismjs/components/");
+loadLanguages(["jsx", "typescript", "bash", "json", "css", "scss", "yaml"]);
+
+marked.setOptions({
+  highlight: function (code, lang) {
+    console.log("bkasngskjd code", code, lang, languages[lang]);
+    if (languages[lang]) {
+      console.log("highlighting code", code, lang);
+      return highlight(code, languages[lang], lang);
+    } else {
+      return code;
+    }
+  },
+});
+
+export async function getAllPosts(): Promise<Post[]> {
   const context = require.context("../_posts", false, /\.md$/);
-  const posts: { slug: string; title: string }[] = [];
+  const posts: Post[] = [];
 
   for (const key of context
     .keys()
@@ -13,6 +28,7 @@ export async function getAllPosts(): Promise<
     const post = key.slice(2);
     const content = await import(`../_posts/${post}`);
     const meta = matter(content.default);
+
     posts.push({
       slug: post.replace(".md", ""),
       title: meta.data.title,
@@ -30,6 +46,6 @@ export async function getPostBySlug(
 
   return {
     title: meta.data.title,
-    content: marked(meta.content),
+    content: marked.parse(meta.content),
   };
 }

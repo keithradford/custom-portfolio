@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <>
       <Heading as="h1" size="2xl" color="#1a281f">
-        keith radford
+        Keith Radford
       </Heading>
       <Box py={4}>
         <Image

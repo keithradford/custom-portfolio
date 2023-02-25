@@ -7,7 +7,7 @@ export default function Footer() {
         <hr color="#1a281f" style={{ width: "75%" }} />
         <HStack>
           <Text
-            color="#588157"
+            color="green.700"
             as="a"
             href="https://www.github.com/keithradford"
             _hover={{ color: "#1a281f" }}
@@ -17,7 +17,7 @@ export default function Footer() {
           </Text>
           <Text
             as="a"
-            color="#588157"
+            color="green.700"
             _hover={{ color: "#1a281f" }}
             href="https://www.linkedin.com/in/keith-radford/"
             target="_blank"
@@ -26,7 +26,7 @@ export default function Footer() {
           </Text>
         </HStack>
         <Text color="#1a281f" fontSize="xs">
-          © 2022 Keith Radford
+          © {new Date().getFullYear()} Keith Radford
         </Text>
       </VStack>
     </Center>

@@ -1,13 +1,14 @@
 import { getAllPosts, getPostBySlug } from "../../api";
+import { Post } from "../../constants/types";
 import BlogLayout from "../../layouts/BlogLayout";
 
-export default function Post({
+export default function BlogPost({
   title,
   posts,
   content,
 }: {
   title: string;
-  posts: { slug: string; title: string }[];
+  posts: Post[];
   content: string;
 }) {
   return <BlogLayout title={title} content={content} posts={posts} />;
