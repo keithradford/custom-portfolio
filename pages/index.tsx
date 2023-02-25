@@ -1,22 +1,32 @@
 import { Box, Container, Grid, GridItem, HStack } from "@chakra-ui/react";
+import getConfig from "next/config";
 import Link from "next/link";
+import { getAllPosts } from "../api";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-export default function Home() {
+type Props = {
+  posts: { slug: string; title: string }[];
+};
+
+export default function Home({ posts }: Props) {
   return (
     <Container maxW="container.lg">
       <Box w="100%" p={6}>
         <Header />
         <Grid
           templateAreas={` "nav main"
-                  "nav footer"`}
+                  "footer footer"`}
           gridTemplateColumns={"25% 1fr"}
           gap="1"
           color="blackAlpha.700"
         >
           <GridItem pl="2" bg="pink.300" area={"nav"}>
-            <Link href="/blog">link</Link>
+            {posts.map(({ slug, title }: { slug: string; title: string }) => (
+              <Link href={`/blog/${slug}`} key={slug}>
+                {title}
+              </Link>
+            ))}
           </GridItem>
           <GridItem pl="2" bg="green.300" area={"main"}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -89,4 +99,14 @@ export default function Home() {
       </Box>
     </Container>
   );
+}
+
+export async function getStaticProps(): Promise<{ props: Props }> {
+  const posts = await getAllPosts();
+
+  return {
+    props: {
+      posts,
+    },
+  };
 }
