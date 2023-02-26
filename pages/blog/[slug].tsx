@@ -7,11 +7,18 @@ type Props = {
   posts: Post[];
   content: string;
   date: string;
+  slug: string;
 };
 
-export default function BlogPost({ title, posts, content, date }: Props) {
+export default function BlogPost({ title, posts, content, date, slug }: Props) {
   return (
-    <BlogLayout title={title} content={content} posts={posts} date={date} />
+    <BlogLayout
+      title={title}
+      content={content}
+      posts={posts}
+      date={date}
+      slug={slug}
+    />
   );
 }
 
@@ -20,6 +27,7 @@ export async function getStaticProps(context: any) {
     props: {
       ...(await getPostBySlug(context.params.slug)),
       posts: await getAllPosts(),
+      slug: context.params.slug,
     },
   };
 }

@@ -11,9 +11,16 @@ type Props = {
   content: string;
   posts: Post[];
   date: string;
+  slug: string;
 };
 
-export default function BlogLayout({ title, content, posts, date }: Props) {
+export default function BlogLayout({
+  title,
+  content,
+  posts,
+  date,
+  slug,
+}: Props) {
   return (
     <Container maxW="container.lg">
       <Box w="100%" p={6}>
@@ -26,7 +33,7 @@ export default function BlogLayout({ title, content, posts, date }: Props) {
           color="blackAlpha.700"
         >
           <GridItem pl="2" area={"nav"}>
-            <Nav posts={posts} />
+            <Nav posts={posts} slug={slug} />
           </GridItem>
           <GridItem pl="2" area={"main"}>
             <Head>

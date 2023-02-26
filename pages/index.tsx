@@ -7,17 +7,24 @@ type Props = {
   content: string;
   date: string;
   posts: Post[];
+  slug: string;
 };
 
-export default function Home({ posts, title, content, date }: Props) {
+export default function Home({ posts, title, content, date, slug }: Props) {
   return (
-    <BlogLayout title={title} content={content} posts={posts} date={date} />
+    <BlogLayout
+      title={title}
+      content={content}
+      posts={posts}
+      date={date}
+      slug={slug}
+    />
   );
 }
 
 export async function getStaticProps(): Promise<{ props: Props }> {
   const posts = await getAllPosts();
-  const { title, content, date } = await getLatestPost();
+  const { title, content, date, slug } = await getLatestPost();
 
   return {
     props: {
@@ -25,6 +32,7 @@ export async function getStaticProps(): Promise<{ props: Props }> {
       title,
       content,
       date,
+      slug,
     },
   };
 }

@@ -2,8 +2,8 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { highlight, languages } from "prismjs";
 import { Post, PostContent } from "../constants/types";
+import loadLanguages from "prismjs/components/index";
 
-const loadLanguages = require("prismjs/components/");
 loadLanguages(["jsx", "typescript", "bash", "json", "css", "scss", "yaml"]);
 
 marked.setOptions({
@@ -48,11 +48,17 @@ export async function getPostBySlug(slug: string): Promise<PostContent> {
   };
 }
 
-export async function getLatestPost(): Promise<PostContent> {
+export async function getLatestPost(): Promise<PostContent & { slug: string }> {
   const posts = await getAllPosts();
-  const latestPost = posts.sort((a, b) => {
+  const { slug } = posts.sort((a, b) => {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   })[0];
+  const { content, date, title } = await getPostBySlug(slug);
 
-  return getPostBySlug(latestPost.slug);
+  return {
+    slug,
+    content,
+    date,
+    title,
+  };
 }
