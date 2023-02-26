@@ -47,3 +47,12 @@ export async function getPostBySlug(slug: string): Promise<PostContent> {
     date: meta.data.date,
   };
 }
+
+export async function getLatestPost(): Promise<PostContent> {
+  const posts = await getAllPosts();
+  const latestPost = posts.sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  })[0];
+
+  return getPostBySlug(latestPost.slug);
+}
