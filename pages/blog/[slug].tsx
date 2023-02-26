@@ -2,16 +2,17 @@ import { getAllPosts, getPostBySlug } from "../../api";
 import { Post } from "../../constants/types";
 import BlogLayout from "../../layouts/BlogLayout";
 
-export default function BlogPost({
-  title,
-  posts,
-  content,
-}: {
+type Props = {
   title: string;
   posts: Post[];
   content: string;
-}) {
-  return <BlogLayout title={title} content={content} posts={posts} />;
+  date: string;
+};
+
+export default function BlogPost({ title, posts, content, date }: Props) {
+  return (
+    <BlogLayout title={title} content={content} posts={posts} date={date} />
+  );
 }
 
 export async function getStaticProps(context: any) {

@@ -6,15 +6,14 @@ import Header from "../components/Header";
 import Nav from "../components/Nav";
 import { Post } from "../constants/types";
 
-export default function BlogLayout({
-  title,
-  content,
-  posts,
-}: {
+type Props = {
   title: string;
   content: string;
   posts: Post[];
-}) {
+  date: string;
+};
+
+export default function BlogLayout({ title, content, posts, date }: Props) {
   return (
     <Container maxW="container.lg">
       <Box w="100%" p={6}>
@@ -33,7 +32,7 @@ export default function BlogLayout({
             <Head>
               <title>{title}</title>
             </Head>
-            <Content title={title} content={content} />
+            <Content title={title} content={content} date={date} />
           </GridItem>
           <GridItem pl="2" area={"footer"}>
             <Footer />
