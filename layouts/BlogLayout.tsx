@@ -1,4 +1,10 @@
-import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Grid,
+  GridItem,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Head from "next/head";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
@@ -21,19 +27,27 @@ export default function BlogLayout({
   date,
   slug,
 }: Props) {
+  const [isBigScreen] = useMediaQuery("(min-width: 700px)");
+
   return (
     <Container maxW="container.lg">
       <Box w="100%" p={6}>
         <Header />
         <Grid
-          templateAreas={` "nav main"
-              "footer footer"`}
-          gridTemplateColumns={"25% 1fr"}
+          templateAreas={
+            isBigScreen
+              ? ` "nav main"
+              "footer footer"`
+              : `"nav"
+              "main"
+              "footer"`
+          }
+          gridTemplateColumns={isBigScreen ? "25% 1fr" : "1fr"}
           gap="1"
           color="blackAlpha.700"
         >
           <GridItem pl="2" area={"nav"}>
-            <Nav posts={posts} slug={slug} />
+            <Nav posts={posts} slug={slug} mobile={!isBigScreen} />
           </GridItem>
           <GridItem pl="2" area={"main"}>
             <Head>
