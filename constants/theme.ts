@@ -22,9 +22,14 @@ const theme = extendTheme({
           fontSize: "md",
           fontWeight: "bold",
         },
+        h4: {
+          fontSize: "md",
+          fontStyle: "italic",
+        },
         p: {
           fontSize: "md",
           lineHeight: "1.4",
+          mb: "2",
         },
         a: {
           color: "blue.500",
@@ -35,6 +40,7 @@ const theme = extendTheme({
         },
         "ol, ul": {
           pl: "7",
+          mb: "2",
         },
         code: {
           fontSize: "sm",
